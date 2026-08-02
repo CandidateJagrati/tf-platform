@@ -17,26 +17,6 @@ This project provisions:
 - Fluent Bit logging
 - CloudWatch Logs integration
 
-Architecture flow:
-
-User
- |
- v
-AWS Application Load Balancer
- |
- v
-Kubernetes Service
- |
- v
-Nginx Pods
- |
- +--> Prometheus Metrics
- |
- +--> Fluent Bit Logs
-        |
-        v
-   CloudWatch Logs
-
 
 ## Technologies Used
 
