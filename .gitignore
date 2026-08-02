@@ -1,0 +1,24 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# AWS
+.aws/
+credentials
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Secrets
+*.secret.yaml
+*.pem
+*.key
+
+# macOS
+.DS_Store
+.idea/
+tfplan
+*.save

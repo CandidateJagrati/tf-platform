@@ -1,0 +1,39 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: platform-alerts
+  namespace: monitoring
+
+spec:
+  groups:
+  - name: platform.rules
+    rules:
+
+    - alert: PodCrashLooping
+      expr: |
+        increase(kube_pod_container_status_restarts_total[10m]) > 3
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: Pod restarting frequently
+        description: "{{ $labels.namespace }}/{{ $labels.pod }} is restarting"
+
+    - alert: NodeHighCPU
+      expr: |
+        100 - (avg by(instance)
+        (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
+      for: 10m
+      labels:
+        severity: warning
+      annotations:
+        summary: Node CPU high
+
+    - alert: PodNotReady
+      expr: |
+        kube_pod_status_ready{condition="false"} == 1
+      for: 10m
+      labels:
+        severity: warning
+      annotations:
+        summary: Pod is not ready
