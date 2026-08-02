@@ -53,3 +53,29 @@ Nginx Pods
 
 
 # Repository Structure
+tf-platform/
+|
+├── module/
+│ ├── vpc/
+│ └── eks/
+|
+├── env/
+│ └── dev/
+│ ├── main.tf
+│ ├── providers.tf
+│ ├── nginx-service.yaml
+│ ├── nginx-ingress.yaml
+│ └── platform-alerts.yaml
+|
+└── README.md
+
+
+# Prerequisites
+
+Install:
+
+- AWS CLI
+- Terraform
+- kubectl
+- Helm
+- eksctl
